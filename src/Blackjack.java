@@ -14,11 +14,22 @@ public class Blackjack extends JFrame{
     }
     
     public Blackjack(){
-        Card c = new Card();
+        Card d1 = new Card();
+        Card d2 = new Card();
+        
+        Card c1 = new Card();
+        Card c2 = new Card();
+        
         setLayout(new FlowLayout());
         
-        add(c);
-        System.out.println("Denomination: " + c.getDenomination());
-        System.out.println("Suit: " + c.getSuit());
+        add(d1);
+        add(d2);
+        
+        add(c1);
+        add(c2);
+        //System.out.println("Denomination: " + c1.getDenomination());
+        //System.out.println("Suit: " + c1.getSuit());
+        //System.out.println("Denomination: " + c2.getDenomination());
+        //System.out.println("Suit: " + c2.getSuit());
     }
 }
