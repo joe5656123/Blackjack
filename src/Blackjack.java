@@ -16,7 +16,9 @@ public class Blackjack extends JFrame{
         Card c = new Card();
         setLayout(new GridLayout(3, 3, 3, 3));
         
-        add(new Card(1));
+        add(c);
+        System.out.println("Denomination: " + c.getDenomination());
+        System.out.println("Suit: " + c.getSuit());
         //add(c.iButton);
     }
 }

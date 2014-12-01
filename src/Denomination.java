@@ -1,12 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author joe56_000
- */
 public enum Denomination {
     Ace("Ace", 11),
     Two("2", 2),

@@ -14,7 +14,6 @@ public class Deck {
     private java.util.ArrayList<Card> _deck;
     
     public Deck () {
-        // TODO: Generate random deck
         this.generateNewDeck();
     }
     

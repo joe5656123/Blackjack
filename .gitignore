@@ -44,3 +44,7 @@ Temporary Items
 .apdisk
 /build/
 nbproject/private/private.xml
+*.class
+*.BAT
+*.properties
+nbproject/private/private.properties
