@@ -34,13 +34,14 @@ public class Card extends JToggleButton{ // card Object
         //this.setSize(100, 75);
         this.setIcon(i);
         iButton = new JToggleButton(i, true);
-        //this.setSelected(true);
+        this.setSelected(true);
         this.setBorderPainted(false); 
         this.setContentAreaFilled(false); 
         this.setFocusPainted(false); 
         this.setOpaque(false);
+        this.setPressedIcon(new ImageIcon("images/b1fv.png"));
         
-        this.addItemListener(new ItemListener() {
+        /*this.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged (ItemEvent ie){
                 Card c = new Card();
@@ -61,6 +62,7 @@ public class Card extends JToggleButton{ // card Object
                 }
             }
         });
+        */
         
         /*JToggleButton jtb = new JToggleButton("Press Me");
         this.addItemListener(new ItemListener() {
