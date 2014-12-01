@@ -29,14 +29,18 @@ public class Card extends JButton{ // card Object
             System.out.println(e);
         }
         
-        //JButton iButton;
-        iButton = new JButton("i");
-        iButton.setSize(100, 75);
-        iButton.setIcon(i);
-        //iButton.addActionListener(new ProcessorNextStepListener(this));
-        
-        //add(iButton);
-    }
+        this.setSize(100, 75);
+        this.setIcon(i);
+        this.setBorderPainted(false); 
+        this.setContentAreaFilled(false); 
+        this.setFocusPainted(false); 
+        this.setOpaque(false);
+        }
+    
+    /*public void actionPerformed(ActionEvent e) {
+        numClicks++;
+        text.setText("Button Clicked " + numClicks + " times");
+    }*/
     
     public String getSuit(){ // gets the suit of the card
         return this._suit.toString();

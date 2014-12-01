@@ -5,7 +5,7 @@ import javax.swing.*;
 public class Blackjack extends JFrame{
     public static void main(String[] args) {
         Blackjack frame = new Blackjack();
-        frame.setSize(250, 250);
+        frame.setSize(600, 600);
         frame.setTitle("Black Jack");
         frame.setLocationRelativeTo(null); // Center the frame
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -14,11 +14,10 @@ public class Blackjack extends JFrame{
     
     public Blackjack(){
         Card c = new Card();
-        setLayout(new GridLayout(3, 3, 3, 3));
+        setLayout(new FlowLayout());
         
         add(c);
         System.out.println("Denomination: " + c.getDenomination());
         System.out.println("Suit: " + c.getSuit());
-        //add(c.iButton);
     }
 }
