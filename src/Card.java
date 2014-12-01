@@ -23,65 +23,21 @@ public class Card extends JToggleButton{ // card Object
         this._denomination = Denomination.getDenomFromInt(cardNumber);
         
         // Configure Image
-        //ImageIcon i = new ImageIcon("images/" + cardNumber + ".png");
-
         try {
-            i = new ImageIcon("images/" + cardNumber + ".png");
+            i = new ImageIcon("images/b1fv.png");
         } catch (Exception e) { 
             System.out.println(e);
         }
         
         //this.setSize(100, 75);
         this.setIcon(i);
-        iButton = new JToggleButton(i, true);
+        iButton = new JToggleButton(i, false);
         this.setSelected(true);
         this.setBorderPainted(false); 
         this.setContentAreaFilled(false); 
         this.setFocusPainted(false); 
         this.setOpaque(false);
-        this.setPressedIcon(new ImageIcon("images/b1fv.png"));
-        
-        /*this.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged (ItemEvent ie){
-                Card c = new Card();
-                if(c.iButton.isSelected()){
-                    c.i = new ImageIcon("images/" + c._cardNumber + ".png");
-                    c.iButton.setIcon(c.i);
-                    c.iButton.setSelected(true);
-                    System.out.println("button is right side up");
-                    //c.iButton = new JToggleButton(i, false);
-                    repaint();
-                } else {
-                    c.i = new ImageIcon("images/b1fv.png");
-                    c.iButton.setIcon(c.i);
-                    c.iButton.setSelected(false );
-                    System.out.println("button is up side down");
-                    //c.iButton = new JToggleButton(i, true);
-                    repaint();
-                }
-            }
-        });
-        */
-        
-        /*JToggleButton jtb = new JToggleButton("Press Me");
-        this.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent ev) {
-                Card c = new Card();
-                if (ev.getStateChange() == ItemEvent.SELECTED){
-                    ImageIcon i = new ImageIcon("images/" + c._cardNumber + ".png");//♥
-                    iButton.setIcon(i);
-                    System.out.println("button is right side up");
-                    repaint();
-                } else if (ev.getStateChange() == ItemEvent.DESELECTED){
-                    ImageIcon i = new ImageIcon("images/b2fv.png");
-                    iButton.setIcon(i);
-                    System.out.println("button is up side down");
-                    repaint();
-                }
-            }
-        });*/
+        this.setSelectedIcon(new ImageIcon("images/" + cardNumber + ".png"));
     }
     
     public String getSuit(){ // gets the suit of the card
