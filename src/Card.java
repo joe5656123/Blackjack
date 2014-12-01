@@ -52,6 +52,11 @@ public class Card extends JButton{ // card Object
         //add(iButton);
     }
     
+    /*public void actionPerformed(ActionEvent e) {
+        numClicks++;
+        text.setText("Button Clicked " + numClicks + " times");
+    }*/
+    
     public String getSuit(){ // gets the suit of the card
         return this._suit;
     }
