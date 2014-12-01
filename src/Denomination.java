@@ -22,7 +22,7 @@ public enum Denomination {
     }
     
     public static Denomination getDenomFromInt(int i) {
-        return Denomination.values()[i % 13]; // i - 1?
+        return Denomination.values()[(i - 1) % 13]; // i - 1?
     }
     
     @Override
