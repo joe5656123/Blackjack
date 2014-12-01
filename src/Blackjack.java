@@ -13,9 +13,10 @@ public class Blackjack extends JFrame{
     }
     
     public Blackjack(){
-        //Card c = new Card();
+        Card c = new Card();
         setLayout(new GridLayout(3, 3, 3, 3));
         
-        add(new Card());
+        add(new Card(1));
+        //add(c.iButton);
     }
 }
