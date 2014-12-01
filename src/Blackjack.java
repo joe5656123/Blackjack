@@ -1,18 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author joe56_000
- */
-public class Blackjack {
+import java.util.*;
+import java.awt.*;
+import javax.swing.*;
 
-    /**
-     * @param args the command line arguments
-     */
+public class Blackjack extends JFrame{
     public static void main(String[] args) {
-        // TODO code application logic here
+        Blackjack frame = new Blackjack();
+        frame.setSize(250, 250);
+        frame.setTitle("Black Jack");
+        frame.setLocationRelativeTo(null); // Center the frame
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+    
+    public Blackjack(){
+        //Card c = new Card();
+        setLayout(new GridLayout(3, 3, 3, 3));
+        
+        add(new Card());
     }
 }

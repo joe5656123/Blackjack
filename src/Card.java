@@ -1,4 +1,6 @@
-public class Card { // card Object
+import javax.swing.*;
+
+public class Card extends JButton{ // card Object
     private String _suit; // spade, club, heart, or diamond
     private String _denomination; // a, 1, 2, 3, 4, 5, 6, 7, 8, 9, j, q, or k
     private int _cardNumber; // 1 - 52 (not including jokers)
