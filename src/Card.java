@@ -33,7 +33,6 @@ public class Card extends JButton{ // card Object
         
         // Set Denomination
         this._denomination = Denomination.getDenomFromInt(cardNumber);
-        
     }
     
     public String getSuit(){ // gets the suit of the card
