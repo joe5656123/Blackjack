@@ -37,6 +37,8 @@ public class Blackjack extends JFrame{
         
         add(c2);
         add(c1);
+        
+        add(new JButton("HIT"));
         //System.out.println("Denomination: " + c1.getDenomination());
         //System.out.println("Suit: " + c1.getSuit());
         //System.out.println("Denomination: " + c2.getDenomination());
