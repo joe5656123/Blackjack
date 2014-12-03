@@ -40,6 +40,48 @@ public class Card extends JToggleButton{ // card Object
         this.setSelectedIcon(new ImageIcon("images/" + cardNumber + ".png"));
     }
     
+    public Card(int cardNumber, boolean flipped, boolean dealer) {
+        // Set Card Number
+        this._cardNumber = cardNumber;
+        
+        // Set Suit
+        this._suit = Suit.getSuitFromInt(cardNumber);
+        
+        // Set Denomination
+        this._denomination = Denomination.getDenomFromInt(cardNumber);
+        
+        // Configure Image
+        if (flipped == true){
+            try {
+                i = new ImageIcon("images/" + cardNumber + ".png");
+            } catch (Exception e) { 
+                System.out.println(e);
+            }
+        } else {
+            try {
+                i = new ImageIcon("images/b1fv.png");
+            } catch (Exception e) { 
+                System.out.println(e);
+            }
+        }
+        
+        //this.setSize(100, 75);
+        this.setIcon(i);
+        iButton = new JToggleButton(i, false);
+        this.setSelected(true);
+        this.setBorderPainted(false); 
+        this.setContentAreaFilled(false); 
+        this.setFocusPainted(false); 
+        this.setOpaque(false);
+        if (flipped == true){
+            if (dealer == false)
+                this.setSelectedIcon(new ImageIcon("images/b1fv.png"));
+        } else {
+            if (dealer == false)
+                this.setSelectedIcon(new ImageIcon("images/" + cardNumber + ".png"));
+        }
+    }
+    
     public String getSuit(){ // gets the suit of the card
         return this._suit.toString();
     }

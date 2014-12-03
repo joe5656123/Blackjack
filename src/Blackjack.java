@@ -14,19 +14,29 @@ public class Blackjack extends JFrame{
     }
     
     public Blackjack(){
-        Card d1 = new Card();
-        Card d2 = new Card();
+        Card d1Fake = new Card();
+        Card d1 = new Card(d1Fake.getCardNumber(), true, true);
+        Card d2Fake = new Card();
+        Card d2 = new Card(d2Fake.getCardNumber(), false, true);
         
         Card c1 = new Card();
-        Card c2 = new Card();
+        Card c2Fake = new Card();
+        Card c2 = new Card(c2Fake.getCardNumber(), true, false);
         
         setLayout(new FlowLayout());
+        /*Container contentPane = new Container();
+        SpringLayout layout = new SpringLayout();
+        contentPane.setLayout(layout);
+        contentPane.add(new JLabel("Label: "));
+        contentPane.add(new JTextField("Text field", 15));*/
         
-        add(d1);
         add(d2);
+        add(d1);
         
-        add(c1);
+        //setLayout(new FlowLayout());
+        
         add(c2);
+        add(c1);
         //System.out.println("Denomination: " + c1.getDenomination());
         //System.out.println("Suit: " + c1.getSuit());
         //System.out.println("Denomination: " + c2.getDenomination());
