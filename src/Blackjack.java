@@ -40,5 +40,8 @@ public class Blackjack extends JFrame{
         setLayout(new BorderLayout());
         this.add(player, BorderLayout.SOUTH);
         this.add(dealer, BorderLayout.NORTH);
+		
+		// Add Buttons
+        add(new JButton("HIT"));
     }
 }
