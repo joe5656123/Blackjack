@@ -49,5 +49,10 @@ public class Blackjack extends JFrame{
         this.getContentPane().setBackground(new Color(0, 150, 0));
         this.add(player, BorderLayout.SOUTH);
         this.add(dealer, BorderLayout.NORTH);
+        
+        System.out.println("Denomination: " + c1.getDenomination());
+        System.out.println("Suit: " + c1.getSuit());
+        System.out.println("Denomination: " + c2.getDenomination());
+        System.out.println("Suit: " + c2.getSuit());
     }
 }

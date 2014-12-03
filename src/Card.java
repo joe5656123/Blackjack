@@ -9,7 +9,7 @@ public class Card extends JToggleButton{ // card Object
     private ImageIcon i; // makes the button look like a card
     
     public Card() { 
-        this(new java.util.Random().nextInt(52));
+        this(new java.util.Random().nextInt(53) - 1);
     }
 
     public Card(int cardNumber) {
