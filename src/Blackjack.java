@@ -27,21 +27,27 @@ public class Blackjack extends JFrame{
         // Dealer JPanel
         JPanel dealer = new JPanel();
         dealer.setLayout(new FlowLayout());
+        dealer.setBackground(new Color(0, 150, 0));
         dealer.add(d2);
         dealer.add(d1);
         
-        // Player JPanel
+        // Player JPanel With Buttons
         JPanel player = new JPanel();
         player.setLayout(new FlowLayout());
+        player.setBackground(new Color(0, 150, 0));
+        player.add(new JButton("STAY"));
         player.add(c2);
         player.add(c1);
+        player.add(new JButton("HIT"));
+        
+        // How to add to the middle v
+        // player.add(new Card(), null, 3);
+
         
         // Add Components
-        setLayout(new BorderLayout());
+        this.setLayout(new BorderLayout());
+        this.getContentPane().setBackground(new Color(0, 150, 0));
         this.add(player, BorderLayout.SOUTH);
         this.add(dealer, BorderLayout.NORTH);
-		
-		// Add Buttons
-        add(new JButton("HIT"));
     }
 }
