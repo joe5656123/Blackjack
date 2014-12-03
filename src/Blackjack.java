@@ -14,6 +14,7 @@ public class Blackjack extends JFrame{
     }
     
     public Blackjack(){
+        // Instansiate Cards
         Card d1Fake = new Card();
         Card d1 = new Card(d1Fake.getCardNumber(), true, true);
         Card d2Fake = new Card();
@@ -23,23 +24,21 @@ public class Blackjack extends JFrame{
         Card c2Fake = new Card();
         Card c2 = new Card(c2Fake.getCardNumber(), true, false);
         
-        setLayout(new FlowLayout());
-        /*Container contentPane = new Container();
-        SpringLayout layout = new SpringLayout();
-        contentPane.setLayout(layout);
-        contentPane.add(new JLabel("Label: "));
-        contentPane.add(new JTextField("Text field", 15));*/
+        // Dealer JPanel
+        JPanel dealer = new JPanel();
+        dealer.setLayout(new FlowLayout());
+        dealer.add(d2);
+        dealer.add(d1);
         
-        add(d2);
-        add(d1);
+        // Player JPanel
+        JPanel player = new JPanel();
+        player.setLayout(new FlowLayout());
+        player.add(c2);
+        player.add(c1);
         
-        //setLayout(new FlowLayout());
-        
-        add(c2);
-        add(c1);
-        //System.out.println("Denomination: " + c1.getDenomination());
-        //System.out.println("Suit: " + c1.getSuit());
-        //System.out.println("Denomination: " + c2.getDenomination());
-        //System.out.println("Suit: " + c2.getSuit());
+        // Add Components
+        setLayout(new BorderLayout());
+        this.add(player, BorderLayout.SOUTH);
+        this.add(dealer, BorderLayout.NORTH);
     }
 }
