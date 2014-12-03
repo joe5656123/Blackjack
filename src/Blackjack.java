@@ -38,6 +38,7 @@ public class Blackjack extends JFrame{
         player.add(new JButton("STAY"));
         player.add(c2);
         player.add(c1);
+        player.add(new Card(1));
         player.add(new JButton("HIT"));
         
         // How to add to the middle v
