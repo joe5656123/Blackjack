@@ -4,6 +4,8 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class Blackjack extends JFrame{
+    private Deck _deck;
+    
     public static void main(String[] args) {
         Blackjack frame = new Blackjack();
         frame.setSize(600, 600);
@@ -15,13 +17,15 @@ public class Blackjack extends JFrame{
     
     public Blackjack(){
         // Instansiate Cards
-        Card d1Fake = new Card();
+        this._deck = new Deck();
+
+        Card d1Fake = this._deck.draw();
         Card d1 = new Card(d1Fake.getCardNumber(), true, true);
-        Card d2Fake = new Card();
+        Card d2Fake = this._deck.draw();
         Card d2 = new Card(d2Fake.getCardNumber(), false, true);
         
-        Card c1 = new Card();
-        Card c2Fake = new Card();
+        Card c1 = this._deck.draw();
+        Card c2Fake = this._deck.draw();
         Card c2 = new Card(c2Fake.getCardNumber(), true, false);
         
         // Dealer JPanel

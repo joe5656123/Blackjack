@@ -5,7 +5,6 @@ public class Card extends JToggleButton{ // card Object
     private Suit _suit; // spade, club, heart, or diamond
     private Denomination _denomination; // a, 1, 2, 3, 4, 5, 6, 7, 8, 9, j, q, or k
     private int _cardNumber; // 1 - 52 (not including jokers)
-    private JToggleButton iButton; // makes the card a button
     private ImageIcon i; // makes the button look like a card
     
     public Card() { 
@@ -31,7 +30,6 @@ public class Card extends JToggleButton{ // card Object
         
         //this.setSize(100, 75);
         this.setIcon(i);
-        iButton = new JToggleButton(i, false);
         this.setSelected(true);
         this.setBorderPainted(false); 
         this.setContentAreaFilled(false); 
@@ -67,7 +65,6 @@ public class Card extends JToggleButton{ // card Object
         
         //this.setSize(100, 75);
         this.setIcon(i);
-        iButton = new JToggleButton(i, false);
         this.setSelected(true);
         this.setBorderPainted(false); 
         this.setContentAreaFilled(false); 
