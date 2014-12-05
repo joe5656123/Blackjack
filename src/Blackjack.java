@@ -39,7 +39,6 @@ public class Blackjack extends JFrame{
         _player = new Player(this._deck); // Ads the player panel
         _player.addCard(c1); // Players flipped card
         _player.addCard(c2); // Players unflipped card
-
         
         // Add Components
         this.setLayout(new BorderLayout());

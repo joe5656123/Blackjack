@@ -10,6 +10,7 @@ public class Player extends JPanel {
     private JButton _stand;
     
     private HitListener _hitListener;
+    private StandListener _standListener;
     
     public Player(Deck d) {
         // Initialization
@@ -18,6 +19,7 @@ public class Player extends JPanel {
         this._stand = new JButton("STAND");
         this._deck = d;
         this._hitListener = new HitListener(this);
+        this._standListener = new StandListener(this);
         
         // Layout
         this.setLayout(new FlowLayout());
@@ -31,6 +33,7 @@ public class Player extends JPanel {
         
         // Add action listeners
         this._hit.addActionListener(this._hitListener);
+        this._stand.addActionListener(this._standListener);
     }
     
     public void addCard(Card c) {
@@ -67,6 +70,36 @@ public class Player extends JPanel {
             
             // Remove Me!
             System.out.println("Total: " + this._player.getTotal());
+        }
+    }
+    
+    private class StandListener implements ActionListener {
+        private final Player _player;
+       // private final Player _dealer;
+        
+        public StandListener(Player p) {
+            this._player = p;
+            //this._dealer = d;
+        }
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // Flips all player cards face up
+            for(Component c: this._player._cardsPanel.getComponents()){
+                if (c instanceof Card)
+                    ((Card)c).setSelected(false);
+            }
+            
+            // Flips all dealer cards face up
+            /*for(Component c: this._dealer._cardsPanel.getComponents()){
+                if (c instanceof Card){
+                    ((Card)c).setDisabled(false);
+                    ((Card)c).setSelected(true);
+                }
+            }*/
+                    
+            //this._player._cardsPanel.add(this._player._deck.draw());
+            //this._player.setVisible(false);
+            //this._player.setVisible(true);
         }
     }
 }
