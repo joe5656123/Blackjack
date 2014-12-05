@@ -3,11 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Joe/Documents/NetBeansProjects/Blackjack/src/Denomination.java</file>
-            <file>file:/C:/Users/Joe/Documents/NetBeansProjects/Blackjack/src/Suit.java</file>
-            <file>file:/C:/Users/Joe/Documents/NetBeansProjects/Blackjack/src/Blackjack.java</file>
-            <file>file:/C:/Users/Joe/Documents/NetBeansProjects/Blackjack/src/Deck.java</file>
-            <file>file:/C:/Users/Joe/Documents/NetBeansProjects/Blackjack/src/Card.java</file>
+            <file>file:/C:/Users/Frankdt1234/Documents/GitHub/Blackjack/src/Deck.java</file>
+            <file>file:/C:/Users/Frankdt1234/Documents/GitHub/Blackjack/src/Denomination.java</file>
+            <file>file:/C:/Users/Frankdt1234/Documents/GitHub/Blackjack/src/Suit.java</file>
+            <file>file:/C:/Users/Frankdt1234/Documents/GitHub/Blackjack/src/Card.java</file>
+            <file>file:/C:/Users/Frankdt1234/Documents/GitHub/Blackjack/src/Player.java</file>
+            <file>file:/C:/Users/Frankdt1234/Documents/GitHub/Blackjack/src/Blackjack.java</file>
         </group>
     </open-files>
 </project-private>
