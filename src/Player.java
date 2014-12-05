@@ -76,18 +76,15 @@ public class Player extends JPanel {
         public void actionPerformed(ActionEvent e) {
             // Flips all player cards face up
             for(Component c: this._player._cardsPanel.getComponents()){
-                if (c instanceof Card){
-                    if (((Card)c).isSelected() == true) 
-                        ((Card)c).setSelected(false);
-                    else
-                        ((Card)c).setSelected(true);
-                }
+                if (c instanceof Card)
+                    ((Card)c).setSelected(false);
             }
             
             // Flips all dealer cards face up
             /*for(Component c: this._dealer._cardsPanel.getComponents()){
                 if (c instanceof Card){
-                    ((Card)c).setSelected(false);
+                    ((Card)c).setDisabled(false);
+                    ((Card)c).setSelected(true);
                 }
             }*/
                     
