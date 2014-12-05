@@ -4,7 +4,8 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class Blackjack extends JFrame{
-    private Deck _deck;
+    private final Deck _deck;
+    private Player _player;
     
     public static void main(String[] args) {
         Blackjack frame = new Blackjack();
@@ -36,13 +37,9 @@ public class Blackjack extends JFrame{
         dealer.add(d1);
         
         // Player JPanel With Buttons
-        JPanel player = new JPanel();
-        player.setLayout(new FlowLayout());
-        player.setBackground(new Color(0, 150, 0));
-        player.add(new JButton("STAY"));
-        player.add(c2);
-        player.add(c1);
-        player.add(new JButton("HIT"));
+        _player = new Player(this._deck);
+        _player.addCard(c2);
+        _player.addCard(c1);
         
         // How to add to the middle v
         // player.add(new Card(), null, 3);
@@ -51,7 +48,7 @@ public class Blackjack extends JFrame{
         // Add Components
         this.setLayout(new BorderLayout());
         this.getContentPane().setBackground(new Color(0, 150, 0));
-        this.add(player, BorderLayout.SOUTH);
+        this.add(_player, BorderLayout.SOUTH);
         this.add(dealer, BorderLayout.NORTH);
         
         System.out.println("Denomination: " + c1.getDenomination());
