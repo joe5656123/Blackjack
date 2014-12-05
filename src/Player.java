@@ -18,7 +18,7 @@ public class Player extends JPanel {
         this._hit = new JButton("HIT");
         this._stand = new JButton("STAND");
         this._deck = d;
-        this._hitListener = new HitListener(this._cardsPanel, this._deck);
+        this._hitListener = new HitListener(this);
         
         // Layout
         this.setLayout(new FlowLayout());
@@ -50,16 +50,16 @@ public class Player extends JPanel {
     
     // Action Listeners
     private class HitListener implements ActionListener {
-        private JPanel _cardsPanel;
-        private Deck _deck;
+        private final Player _player;
         
-        public HitListener(JPanel cp, Deck d) {
-            this._cardsPanel = cp;
-            this._deck = d;
+        public HitListener(Player p) {
+            this._player = p;
         }
         @Override
         public void actionPerformed(ActionEvent e) {
-            this._cardsPanel.add(this._deck.draw());
+            this._player._cardsPanel.add(this._player._deck.draw());
+            this._player.setVisible(false);
+            this._player.setVisible(true);
         }
     }
 }
