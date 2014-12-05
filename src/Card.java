@@ -29,6 +29,7 @@ public class Card extends JToggleButton{ // card Object
         }
         
         this.setIcon(i);
+        this.setDisabledIcon(i);
         this.setSelected(true);
         this.setBorderPainted(false); 
         this.setContentAreaFilled(false); 
@@ -37,7 +38,7 @@ public class Card extends JToggleButton{ // card Object
         this.setSelectedIcon(new ImageIcon("images/" + cardNumber + ".png"));
     }
     
-    public Card(int cardNumber, boolean flipped, boolean dealer) {
+    public Card(int cardNumber, boolean showFace) {
         // Set Card Number
         this._cardNumber = cardNumber;
         
@@ -48,34 +49,51 @@ public class Card extends JToggleButton{ // card Object
         this._denomination = Denomination.getDenomFromInt(cardNumber);
         
         // Configure Image
-        if (flipped == true){ //This will create a card tht is up side down
-            try {
-                i = new ImageIcon("images/" + cardNumber + ".png");
-            } catch (Exception e) { 
-                System.out.println(e);
-            }
-        } else { // this will create a card that is right side up
-            try {
-                i = new ImageIcon("images/b1fv.png");
-            } catch (Exception e) { 
-                System.out.println(e);
-            }
+        try {
+            i = new ImageIcon("images/b1fv.png");
+        } catch (Exception e) { 
+            System.out.println(e);
         }
         
         this.setIcon(i);
-        this.setSelected(true);
+        this.setSelected(showFace);
         this.setBorderPainted(false); 
         this.setContentAreaFilled(false); 
         this.setFocusPainted(false); 
         this.setOpaque(false);
+        this.setSelectedIcon(new ImageIcon("images/" + cardNumber + ".png"));
+    }
+    
+    public Card(int cardNumber, boolean showFace, boolean dealer) {
+        // Set Card Number
+        this._cardNumber = cardNumber;
         
-        if (flipped == true){ // Checks if it is flipped
-            if (dealer == false) // Creates a flipped card for the player
-                this.setSelectedIcon(new ImageIcon("images/b1fv.png"));
-        } else { 
-            if (dealer == false) // Creates an unflipped card for the player
-                this.setSelectedIcon(new ImageIcon("images/" + cardNumber + ".png"));
+        // Set Suit
+        this._suit = Suit.getSuitFromInt(cardNumber);
+        
+        // Set Denomination
+        this._denomination = Denomination.getDenomFromInt(cardNumber);
+        
+        // Configure Image
+        try {
+            i = new ImageIcon("images/b1fv.png");
+        } catch (Exception e) { 
+            System.out.println(e);
         }
+        
+        this.setIcon(i);
+        this.setDisabledIcon(i);
+        this.setSelected(showFace);
+        this.setBorderPainted(false); 
+        this.setContentAreaFilled(false); 
+        this.setFocusPainted(false); 
+        this.setOpaque(false);
+        this.setSelectedIcon(new ImageIcon("images/" + cardNumber + ".png"));
+
+        if (dealer) {
+            this.setEnabled(false);
+        }
+        
     }
     
     public String getSuit(){ // gets the suit of the card
@@ -99,5 +117,9 @@ public class Card extends JToggleButton{ // card Object
         
         // Set Denomination
         this._denomination = Denomination.getDenomFromInt(cardNumber);
+    }
+    
+    public int getWorth() {
+        return this._denomination.getValue();
     }
 }

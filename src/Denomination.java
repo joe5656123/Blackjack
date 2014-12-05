@@ -29,7 +29,7 @@ public enum Denomination { // Denomination enum
     public String toString() {
         return this._id;
     }
-    public float getValue() {
+    public int getValue() {
         return this._value;
     }
 }

@@ -1,6 +1,5 @@
 
-import java.awt.Color;
-import java.awt.FlowLayout;
+import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -45,6 +44,11 @@ public class Player extends JPanel {
     public int getTotal() {
         int total = 0;
         // TODO: Iterate through _cardsPanel and calculate total
+        for (Component c : this._cardsPanel.getComponents()) {
+            if (c instanceof Card) {
+                total += ((Card)c).getWorth();
+            }
+        }
         return total;
     }
     
@@ -60,6 +64,9 @@ public class Player extends JPanel {
             this._player._cardsPanel.add(this._player._deck.draw());
             this._player.setVisible(false);
             this._player.setVisible(true);
+            
+            // Remove Me!
+            System.out.println("Total: " + this._player.getTotal());
         }
     }
 }
