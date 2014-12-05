@@ -26,6 +26,7 @@ public class Blackjack extends JFrame{
         Card d1 = new Card(d1Fake.getCardNumber(), true, true);
         Card d2Fake = this._deck.draw();
         Card d2 = new Card(d2Fake.getCardNumber(), false, true);
+        
         Card c1 = this._deck.draw();
         Card c2Fake = this._deck.draw();
         Card c2 = new Card(c2Fake.getCardNumber(), true, false);
@@ -41,7 +42,6 @@ public class Blackjack extends JFrame{
         _player = new Player(this._deck); // Ads the player panel
         _player.addCard(c2); // Players flipped card
         _player.addCard(c1); // Players unflipped card
-
         
         // Add Components
         this.setLayout(new BorderLayout());

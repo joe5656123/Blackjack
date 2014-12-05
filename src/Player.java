@@ -1,6 +1,4 @@
-
-import java.awt.Color;
-import java.awt.FlowLayout;
+import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -11,6 +9,7 @@ public class Player extends JPanel {
     private JButton _stand;
     
     private HitListener _hitListener;
+    private StandListener _standListener;
     
     public Player(Deck d) {
         // Initialization
@@ -19,6 +18,7 @@ public class Player extends JPanel {
         this._stand = new JButton("STAND");
         this._deck = d;
         this._hitListener = new HitListener(this);
+        this._standListener = new StandListener(this);
         
         // Layout
         this.setLayout(new FlowLayout());
@@ -32,6 +32,7 @@ public class Player extends JPanel {
         
         // Add action listeners
         this._hit.addActionListener(this._hitListener);
+        this._stand.addActionListener(this._standListener);
     }
     
     public void addCard(Card c) {
@@ -60,6 +61,39 @@ public class Player extends JPanel {
             this._player._cardsPanel.add(this._player._deck.draw());
             this._player.setVisible(false);
             this._player.setVisible(true);
+        }
+    }
+    
+    private class StandListener implements ActionListener {
+        private final Player _player;
+       // private final Player _dealer;
+        
+        public StandListener(Player p) {
+            this._player = p;
+            //this._dealer = d;
+        }
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // Flips all player cards face up
+            for(Component c: this._player._cardsPanel.getComponents()){
+                if (c instanceof Card){
+                    if (((Card)c).isSelected() == true) 
+                        ((Card)c).setSelected(false);
+                    else
+                        ((Card)c).setSelected(true);
+                }
+            }
+            
+            // Flips all dealer cards face up
+            /*for(Component c: this._dealer._cardsPanel.getComponents()){
+                if (c instanceof Card){
+                    ((Card)c).setSelected(false);
+                }
+            }*/
+                    
+            //this._player._cardsPanel.add(this._player._deck.draw());
+            //this._player.setVisible(false);
+            //this._player.setVisible(true);
         }
     }
 }
