@@ -1,4 +1,4 @@
-public enum Denomination {
+public enum Denomination { // Denomination enum
     Ace("Ace", 11),
     Two("2", 2),
     Three("3", 3),
@@ -22,7 +22,7 @@ public enum Denomination {
     }
     
     public static Denomination getDenomFromInt(int i) {
-        return Denomination.values()[(i - 1) % 13]; // i - 1?
+        return Denomination.values()[(i - 1) % 13]; // divides the deck into 4 suits
     }
     
     @Override
