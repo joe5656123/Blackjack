@@ -7,7 +7,7 @@ public class Card extends JToggleButton{ // card Object
     private int _cardNumber; // 1 - 52 (not including jokers)
     private ImageIcon i; // makes the button look like a card
     
-    public Card() { 
+    public Card() { // Creates a new random card (for testing purposes only)
         this(new java.util.Random().nextInt(52) + 1);
     }
 
@@ -28,7 +28,6 @@ public class Card extends JToggleButton{ // card Object
             System.out.println(e);
         }
         
-        //this.setSize(100, 75);
         this.setIcon(i);
         this.setSelected(true);
         this.setBorderPainted(false); 
@@ -49,13 +48,13 @@ public class Card extends JToggleButton{ // card Object
         this._denomination = Denomination.getDenomFromInt(cardNumber);
         
         // Configure Image
-        if (flipped == true){
+        if (flipped == true){ //This will create a card tht is up side down
             try {
                 i = new ImageIcon("images/" + cardNumber + ".png");
             } catch (Exception e) { 
                 System.out.println(e);
             }
-        } else {
+        } else { // this will create a card that is right side up
             try {
                 i = new ImageIcon("images/b1fv.png");
             } catch (Exception e) { 
@@ -63,18 +62,18 @@ public class Card extends JToggleButton{ // card Object
             }
         }
         
-        //this.setSize(100, 75);
         this.setIcon(i);
         this.setSelected(true);
         this.setBorderPainted(false); 
         this.setContentAreaFilled(false); 
         this.setFocusPainted(false); 
         this.setOpaque(false);
-        if (flipped == true){
-            if (dealer == false)
+        
+        if (flipped == true){ // Checks if it is flipped
+            if (dealer == false) // Creates a flipped card for the player
                 this.setSelectedIcon(new ImageIcon("images/b1fv.png"));
-        } else {
-            if (dealer == false)
+        } else { 
+            if (dealer == false) // Creates an unflipped card for the player
                 this.setSelectedIcon(new ImageIcon("images/" + cardNumber + ".png"));
         }
     }
