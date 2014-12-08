@@ -1,4 +1,3 @@
-
 import javax.swing.*;
 
 public class Card extends JToggleButton{ // card Object

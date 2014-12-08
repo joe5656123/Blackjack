@@ -1,4 +1,3 @@
-
 import java.awt.*;
 import javax.swing.*;
 
@@ -14,11 +13,6 @@ public class Dealer extends JPanel {
         this.setBackground(new Color(0, 150, 0));
         
         // Add Initial Cards
-        /*
-        Card c = new Card(this._deck.draw(), false, true);
-        c.setSelected(true);
-        this.add(c);
-        */
         this.add(new Card(this._deck.draw(), false, true));
         this.add(new Card(this._deck.draw(), false, true));
     }
@@ -29,5 +23,9 @@ public class Dealer extends JPanel {
                 ((Card)c).setReadonlyFace();
             }
         }
+	}
+	
+    public void startTurn(){
+        
     }
 }
