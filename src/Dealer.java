@@ -1,15 +1,17 @@
 import java.awt.*;
-import static java.lang.Thread.sleep;
+import java.awt.event.*;
 import javax.swing.*;
 
 public class Dealer extends JPanel {
     private Deck _deck;
     private Player _player;
+    private Game _game;
     
     public Dealer(Game g) {
         // Add Objects
         this._deck = g.getDeck();
         this._player = g.getPlayer();
+        this._game = g;
         
         // Set JPanel Properties
         this.setLayout(new FlowLayout());
