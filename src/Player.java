@@ -6,6 +6,7 @@ import javax.swing.*;
 public class Player extends JPanel {
     private Deck _deck;
     private JPanel _cardsPanel;
+    private JPanel _dealerCardsPanel;
     private JButton _hit;
     private JButton _stand;
     
@@ -15,6 +16,7 @@ public class Player extends JPanel {
     public Player(Deck d) {
         // Initialization
         this._cardsPanel = new JPanel();
+        this._dealerCardsPanel = new JPanel();
         this._hit = new JButton("HIT");
         this._stand = new JButton("STAND");
         this._deck = d;
@@ -25,10 +27,12 @@ public class Player extends JPanel {
         this.setLayout(new FlowLayout());
         this.setBackground(new Color(0, 150, 0));
         this._cardsPanel.setBackground(new Color(0, 150, 0));
+        this._dealerCardsPanel.setBackground(new Color(0, 150, 0));
         
         // Add Components
         this.add(_stand);
         this.add(_cardsPanel);
+        this.add(_dealerCardsPanel);
         this.add(_hit);
         
         // Add action listeners
@@ -42,6 +46,7 @@ public class Player extends JPanel {
     
     public void clearCards() {
         this._cardsPanel.removeAll();
+        this._dealerCardsPanel.removeAll();
     }
     
     public int getTotal() {
@@ -53,6 +58,17 @@ public class Player extends JPanel {
             }
         }
         return total;
+    }
+    
+    public int getDealerTotal() {
+        int dealerTotal = 0;
+        // TODO: Iterate through _cardsPanel and calculate total
+        for (Component c : this._dealerCardsPanel.getComponents()) {
+            if (c instanceof Card) {
+                dealerTotal += ((Card)c).getWorth();
+            }
+        }
+        return dealerTotal;
     }
     
     // Action Listeners
@@ -75,14 +91,16 @@ public class Player extends JPanel {
     
     private class StandListener implements ActionListener {
         private final Player _player;
-       // private final Player _dealer;
+        private final Player _dealer;
         
         public StandListener(Player p) {
             this._player = p;
-            //this._dealer = d;
+            this._dealer = p;
         }
         @Override
         public void actionPerformed(ActionEvent e) {
+            //Blackjack dealer = new Blackjack();
+            
             // Flips all player cards face up
             for(Component c: this._player._cardsPanel.getComponents()){
                 if (c instanceof Card)
@@ -90,12 +108,11 @@ public class Player extends JPanel {
             }
             
             // Flips all dealer cards face up
-            /*for(Component c: this._dealer._cardsPanel.getComponents()){
+            for(Component c: this._dealer._dealerCardsPanel.getComponents()){
                 if (c instanceof Card){
-                    ((Card)c).setDisabled(false);
                     ((Card)c).setSelected(true);
                 }
-            }*/
+            }
                     
             //this._player._cardsPanel.add(this._player._deck.draw());
             //this._player.setVisible(false);
