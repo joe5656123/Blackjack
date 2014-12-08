@@ -26,16 +26,16 @@ public class Dealer extends JPanel {
         }
     }
 	
-    public void startDealerTurn() throws InterruptedException{
+    public void startDealerTurn(){
         boolean stand = false;
         
         while (!stand){
             if (getDealerScore() < 17){
                 Card c = new Card(this._deck.draw(), false, true);
-                c.setVisible(false);
-                c.setVisible(true);
+                //c.setVisible(false);
+                c.setReadonlyFace();
                 this.add(c);
-                sleep(100);
+                c.setVisible(true);
             }
             else
                 stand = true;
