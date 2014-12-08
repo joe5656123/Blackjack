@@ -1,67 +1,24 @@
-import java.awt.event.*;
+
 import javax.swing.*;
 
 public class Card extends JToggleButton{ // card Object
+    // Member Variables
     private Suit _suit; // spade, club, heart, or diamond
     private Denomination _denomination; // a, 1, 2, 3, 4, 5, 6, 7, 8, 9, j, q, or k
     private int _cardNumber; // 1 - 52 (not including jokers)
     private ImageIcon i; // makes the button look like a card
     
+    // Constructors
     public Card() { // Creates a new random card (for testing purposes only)
         this(new java.util.Random().nextInt(52) + 1);
     }
 
     public Card(int cardNumber) {
-        // Set Card Number
-        this._cardNumber = cardNumber;
-        
-        // Set Suit
-        this._suit = Suit.getSuitFromInt(cardNumber);
-        
-        // Set Denomination
-        this._denomination = Denomination.getDenomFromInt(cardNumber);
-        
-        // Configure Image
-        try {
-            i = new ImageIcon("images/b1fv.png");
-        } catch (Exception e) { 
-            System.out.println(e);
-        }
-        
-        this.setIcon(i);
-        this.setDisabledIcon(i);
-        this.setSelected(true);
-        this.setBorderPainted(false); 
-        this.setContentAreaFilled(false); 
-        this.setFocusPainted(false); 
-        this.setOpaque(false);
-        this.setSelectedIcon(new ImageIcon("images/" + cardNumber + ".png"));
+        this(cardNumber, true);
     }
     
     public Card(int cardNumber, boolean showFace) {
-        // Set Card Number
-        this._cardNumber = cardNumber;
-        
-        // Set Suit
-        this._suit = Suit.getSuitFromInt(cardNumber);
-        
-        // Set Denomination
-        this._denomination = Denomination.getDenomFromInt(cardNumber);
-        
-        // Configure Image
-        try {
-            i = new ImageIcon("images/b1fv.png");
-        } catch (Exception e) { 
-            System.out.println(e);
-        }
-        
-        this.setIcon(i);
-        this.setSelected(showFace);
-        this.setBorderPainted(false); 
-        this.setContentAreaFilled(false); 
-        this.setFocusPainted(false); 
-        this.setOpaque(false);
-        this.setSelectedIcon(new ImageIcon("images/" + cardNumber + ".png"));
+        this(cardNumber, showFace, false);
     }
     
     public Card(int cardNumber, boolean showFace, boolean dealer) {
@@ -75,12 +32,9 @@ public class Card extends JToggleButton{ // card Object
         this._denomination = Denomination.getDenomFromInt(cardNumber);
         
         // Configure Image
-        try {
-            i = new ImageIcon("images/b1fv.png");
-        } catch (Exception e) { 
-            System.out.println(e);
-        }
+        i = new ImageIcon("images/b1fv.png");
         
+        // Set JToggleButton Properties
         this.setIcon(i);
         this.setDisabledIcon(i);
         this.setSelected(showFace);
@@ -89,13 +43,24 @@ public class Card extends JToggleButton{ // card Object
         this.setFocusPainted(false); 
         this.setOpaque(false);
         this.setSelectedIcon(new ImageIcon("images/" + cardNumber + ".png"));
-
-        if (dealer) {
-            this.setEnabled(false);
-        }
+        this.setEnabled(!dealer);
         
     }
     
+    // Copy constructors
+    public Card(Card c) {
+        this(c.getCardNumber());
+    }
+    
+    public Card(Card c, boolean flipped) {
+        this(c.getCardNumber(), flipped);
+    }
+    
+    public Card(Card c, boolean flipped, boolean dealer) {
+        this(c.getCardNumber(), flipped, dealer);
+    }
+    
+    // Methods
     public String getSuit(){ // gets the suit of the card
         return this._suit.toString();
     }

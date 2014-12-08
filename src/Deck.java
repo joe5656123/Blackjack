@@ -1,4 +1,4 @@
-import java.util.Collections;
+
 public class Deck {
     private java.util.ArrayList<Card> _deck; // instantiates the deck
     
@@ -11,7 +11,7 @@ public class Deck {
         for (int i = 1; i <= 52; i++) {
             this._deck.add(new Card(i));
         }
-        Collections.shuffle(this._deck);
+        java.util.Collections.shuffle(this._deck);
     }
     
     public Card draw() { // Draw the card from the top of the deck (first element)

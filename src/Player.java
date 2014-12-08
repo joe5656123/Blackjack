@@ -4,22 +4,24 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class Player extends JPanel {
-    private Deck _deck;
-    private JPanel _cardsPanel;
-    private JButton _hit;
-    private JButton _stand;
+    private final Deck _deck;
+    private Dealer _dealer;
+    private final JPanel _cardsPanel;
+    private final JButton _hit;
+    private final JButton _stand;
     
-    private HitListener _hitListener;
-    private StandListener _standListener;
+    private final HitListener _hitListener;
+    private final StandListener _standListener;
     
-    public Player(Deck d) {
+    public Player(Deck d, Dealer de) {
         // Initialization
         this._cardsPanel = new JPanel();
         this._hit = new JButton("HIT");
         this._stand = new JButton("STAND");
         this._deck = d;
+        this._dealer = de;
         this._hitListener = new HitListener(this);
-        this._standListener = new StandListener(this);
+        this._standListener = new StandListener(this, this._dealer);
         
         // Layout
         this.setLayout(new FlowLayout());
@@ -34,6 +36,10 @@ public class Player extends JPanel {
         // Add action listeners
         this._hit.addActionListener(this._hitListener);
         this._stand.addActionListener(this._standListener);
+        
+        // Add Initial Cards
+        this.addCard(new Card(this._deck.draw(), false));
+        this.addCard(this._deck.draw());
     }
     
     public void addCard(Card c) {
@@ -46,13 +52,16 @@ public class Player extends JPanel {
     
     public int getTotal() {
         int total = 0;
-        // TODO: Iterate through _cardsPanel and calculate total
         for (Component c : this._cardsPanel.getComponents()) {
             if (c instanceof Card) {
                 total += ((Card)c).getWorth();
             }
         }
         return total;
+    }
+    
+    public boolean busted() {
+        return this.getTotal() > 21;
     }
     
     // Action Listeners
@@ -62,25 +71,27 @@ public class Player extends JPanel {
         public HitListener(Player p) {
             this._player = p;
         }
+        
         @Override
         public void actionPerformed(ActionEvent e) {
             this._player._cardsPanel.add(this._player._deck.draw());
             this._player.setVisible(false);
             this._player.setVisible(true);
             
-            // Remove Me!
+            // TODO: Remove Me!
             System.out.println("Total: " + this._player.getTotal());
         }
     }
     
     private class StandListener implements ActionListener {
         private final Player _player;
-       // private final Player _dealer;
+        private final Dealer _dealer;
         
-        public StandListener(Player p) {
+        public StandListener(Player p, Dealer d) {
             this._player = p;
-            //this._dealer = d;
+            this._dealer = d;
         }
+        
         @Override
         public void actionPerformed(ActionEvent e) {
             // Flips all player cards face up
@@ -89,17 +100,7 @@ public class Player extends JPanel {
                     ((Card)c).setSelected(true);
             }
             
-            // Flips all dealer cards face up
-            /*for(Component c: this._dealer._cardsPanel.getComponents()){
-                if (c instanceof Card){
-                    ((Card)c).setDisabled(false);
-                    ((Card)c).setSelected(true);
-                }
-            }*/
-                    
-            //this._player._cardsPanel.add(this._player._deck.draw());
-            //this._player.setVisible(false);
-            //this._player.setVisible(true);
+            // TODO: Signal dealer to start their turn!
         }
     }
 }
