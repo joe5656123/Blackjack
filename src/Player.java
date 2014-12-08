@@ -130,9 +130,9 @@ public class Player extends JPanel {
             
             // Disables hit / stand buttons
             this._player.disableButtons();
-            
+
             // Signal dealer to start their turn!
-            this._dealer.startTurn();
+            this._dealer.startDealerTurn();
         }
     }
 }

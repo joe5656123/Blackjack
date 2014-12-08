@@ -1,4 +1,5 @@
 import java.awt.*;
+import static java.lang.Thread.sleep;
 import javax.swing.*;
 
 public class Dealer extends JPanel {
@@ -23,9 +24,34 @@ public class Dealer extends JPanel {
                 ((Card)c).setReadonlyFace();
             }
         }
-	}
+    }
 	
-    public void startTurn(){
+    public void startDealerTurn() {
+        boolean stand = false;
         
+        while (!stand){
+            if (getDealerScore() < 17){
+                Card c = new Card(this._deck.draw(), false, true);
+                c.setVisible(false);
+                c.setVisible(true);
+                this.add(c);
+                //try { sleep(100); } catch(Exception ex) {}
+            }
+            else
+                stand = true;
+        }
+        
+        System.out.println("Dealer Total: " + getDealerScore());
+    }
+    
+    public int getDealerScore(){
+        int dealerTotal = 0;
+        
+        for(Component c: this.getComponents()){
+            if (c instanceof Card)
+                dealerTotal += ((Card)c).getWorth();
+        }
+        
+        return dealerTotal;
     }
 }
