@@ -12,7 +12,8 @@ public enum Denomination { // Denomination enum
     Ten("10", 10),
     Jack("Jack", 10),
     Queen("Queen", 10),
-    King("King", 10);
+    King("King", 10),
+    HardAce("Ace", 1);
     
     private String _id;
     private int _value;
