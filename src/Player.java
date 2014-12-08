@@ -55,6 +55,14 @@ public class Player extends JPanel {
         //this._dealerCardsPanel.removeAll();
     }
     
+    public void showAllCards() {
+        for(Component c: this._cardsPanel.getComponents()){
+            if (c instanceof Card) {
+                ((Card)c).setReadonlyFace();
+            }
+        }
+    }
+    
     public int getTotal() {
         int total = 0;
         for (Component c : this._cardsPanel.getComponents()) {
@@ -110,27 +118,14 @@ public class Player extends JPanel {
         }
         
         @Override
-        public void actionPerformed(ActionEvent e) {
-            //Blackjack dealer = new Blackjack();
-            
+        public void actionPerformed(ActionEvent e) {            
             // Flips all player cards face up
-            for(Component c: this._player._cardsPanel.getComponents()){
-                if (c instanceof Card)
-                    ((Card)c).setSelected(true);
-            }
-            
-            // TODO: Signal dealer to start their turn!
+            this._player.showAllCards();
             
             // Flips all dealer cards face up
-            for(Component c: this._dealer.getComponents()){
-                if (c instanceof Card){
-                    ((Card)c).setReadonlyFace();
-                }
-            }
-			
-            //this._player._cardsPanel.add(this._player._deck.draw());
-            //this._player.setVisible(false);
-            //this._player.setVisible(true);
+            this._dealer.showAllCards();
+            
+            // TODO: Signal dealer to start their turn!
         }
     }
 }

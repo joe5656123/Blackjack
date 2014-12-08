@@ -89,12 +89,14 @@ public class Card extends JToggleButton{ // card Object
     }
     
     public void setReadonlyFace() {
-        this.setDisabledIcon(this.getSelectedIcon());
+        this.setSelected(false);
         this.setEnabled(false);
+        this.setDisabledIcon(this.getSelectedIcon());
     }
     
     public void setReadonlyBack() {
-        this.setDisabledIcon(this.getIcon());
+        this.setSelected(true);
         this.setEnabled(false);
+        this.setDisabledIcon(this.getIcon());
     }
 }

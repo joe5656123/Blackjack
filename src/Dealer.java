@@ -22,4 +22,12 @@ public class Dealer extends JPanel {
         this.add(new Card(this._deck.draw(), false, true));
         this.add(new Card(this._deck.draw(), false, true));
     }
+    
+    public void showAllCards() {
+        for(Component c: this.getComponents()){
+            if (c instanceof Card){
+                ((Card)c).setReadonlyFace();
+            }
+        }
+    }
 }
