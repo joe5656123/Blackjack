@@ -115,8 +115,13 @@ public class Player extends JPanel {
             
             // Flips all player cards face up
             for(Component c: this._player._cardsPanel.getComponents()){
-                if (c instanceof Card)
-                    ((Card)c).setSelected(true);
+                if (c instanceof Card){
+                    ((Card)c).setSelected(false);
+                    ((Card)c).setReadonlyFace();
+                }
+                
+                if (c instanceof JButton && !(c instanceof Card))
+                    ((JButton)c).setEnabled(false);
             }
             
             // TODO: Signal dealer to start their turn!
@@ -127,7 +132,7 @@ public class Player extends JPanel {
                     ((Card)c).setReadonlyFace();
                 }
             }
-			
+            
             //this._player._cardsPanel.add(this._player._deck.draw());
             //this._player.setVisible(false);
             //this._player.setVisible(true);

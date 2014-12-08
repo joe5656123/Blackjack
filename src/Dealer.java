@@ -1,4 +1,3 @@
-
 import java.awt.*;
 import javax.swing.*;
 
@@ -21,5 +20,9 @@ public class Dealer extends JPanel {
         */
         this.add(new Card(this._deck.draw(), false, true));
         this.add(new Card(this._deck.draw(), false, true));
+    }
+    
+    public void startTurn(){
+        
     }
 }
