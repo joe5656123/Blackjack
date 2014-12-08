@@ -125,7 +125,8 @@ public class Player extends JPanel {
             // Flips all dealer cards face up
             this._dealer.showAllCards();
             
-            // TODO: Signal dealer to start their turn!
+            // Signal dealer to start their turn!
+            this._dealer.startDealerTurn();
         }
     }
 }
