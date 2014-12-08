@@ -132,7 +132,7 @@ public class Player extends JPanel {
             this._player.disableButtons();
 
             // Signal dealer to start their turn!
-            this._dealer.startDealerTurn();
+            try {this._dealer.startDealerTurn();}catch(Exception ex) {}
         }
     }
 }
