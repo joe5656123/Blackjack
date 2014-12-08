@@ -26,13 +26,14 @@ public class Dealer extends JPanel {
         }
     }
 	
-    public void startDealerTurn(){
+    public void startDealerTurn() {
+
         boolean stand = false;
         
         while (!stand){
             if (getDealerScore() < 17){
                 Card c = new Card(this._deck.draw(), false, true);
-                //c.setVisible(false);
+                c.setVisible(false);
                 c.setReadonlyFace();
                 this.add(c);
                 c.setVisible(true);
