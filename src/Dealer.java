@@ -4,6 +4,7 @@ import javax.swing.*;
 
 public class Dealer extends JPanel {
     private final Deck _deck;
+    private Player _player;
     
     public Dealer(Deck d) {
         // Add Objects
@@ -27,8 +28,7 @@ public class Dealer extends JPanel {
     }
 	
     public void startDealerTurn() {
-
-        boolean stand = false;
+        boolean stand = _player.busted();
         
         while (!stand){
             if (getDealerScore() < 17){
@@ -41,8 +41,6 @@ public class Dealer extends JPanel {
             else
                 stand = true;
         }
-        
-        System.out.println("Dealer Total: " + getDealerScore());
     }
     
     public int getDealerScore(){
