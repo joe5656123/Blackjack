@@ -21,7 +21,7 @@ public class Game extends JFrame {
         this._dealer = new Dealer(this._deck);
         
         // Configure Player
-        this._player = new Player(this._deck, this._dealer); // Adds the player panel
+        this._player = new Player(this); // Adds the player panel
         
         // Add Components
         this.setLayout(new BorderLayout());
@@ -31,11 +31,20 @@ public class Game extends JFrame {
     }
     
     public void restartGame() {
+        // TODO: Make this actually do something:P
         this._dealer = new Dealer(this._deck);
-        this._player = new Player(this._deck, this._dealer);
+        this._player = new Player(this);
     }
     
     public Player getPlayer() {
         return this._player;
+    }
+    
+    public Dealer getDealer() {
+        return this._dealer;
+    }
+    
+    public Deck getDeck() {
+        return this._deck;
     }
 }
