@@ -9,6 +9,7 @@ public class Player extends JPanel {
     private final JPanel _cardsPanel;
     private final JButton _hit;
     private final JButton _stand;
+    //private JPanel _dealerCardsPanel;
     
     private final HitListener _hitListener;
     private final StandListener _standListener;
@@ -16,6 +17,7 @@ public class Player extends JPanel {
     public Player(Deck d, Dealer de) {
         // Initialization
         this._cardsPanel = new JPanel();
+        //this._dealerCardsPanel = new JPanel();
         this._hit = new JButton("HIT");
         this._stand = new JButton("STAND");
         this._deck = d;
@@ -27,10 +29,12 @@ public class Player extends JPanel {
         this.setLayout(new FlowLayout());
         this.setBackground(new Color(0, 150, 0));
         this._cardsPanel.setBackground(new Color(0, 150, 0));
+        //this._dealerCardsPanel.setBackground(new Color(0, 150, 0));
         
         // Add Components
         this.add(_stand);
         this.add(_cardsPanel);
+        //this.add(_dealerCardsPanel);
         this.add(_hit);
         
         // Add action listeners
@@ -48,6 +52,7 @@ public class Player extends JPanel {
     
     public void clearCards() {
         this._cardsPanel.removeAll();
+        //this._dealerCardsPanel.removeAll();
     }
     
     public int getTotal() {
@@ -62,7 +67,19 @@ public class Player extends JPanel {
     
     public boolean busted() {
         return this.getTotal() > 21;
-    }
+	}
+/*
+    public int getDealerTotal() {
+        int dealerTotal = 0;
+        // TODO: Iterate through _cardsPanel and calculate total
+        for (Component c : this._dealerCardsPanel.getComponents()) {
+            if (c instanceof Card) {
+                dealerTotal += ((Card)c).getWorth();
+            }
+        }
+        return dealerTotal;
+	}
+*/
     
     // Action Listeners
     private class HitListener implements ActionListener {
@@ -94,6 +111,8 @@ public class Player extends JPanel {
         
         @Override
         public void actionPerformed(ActionEvent e) {
+            //Blackjack dealer = new Blackjack();
+            
             // Flips all player cards face up
             for(Component c: this._player._cardsPanel.getComponents()){
                 if (c instanceof Card)
@@ -101,6 +120,17 @@ public class Player extends JPanel {
             }
             
             // TODO: Signal dealer to start their turn!
+            
+            // Flips all dealer cards face up
+            for(Component c: this._dealer.getComponents()){
+                if (c instanceof Card){
+                    ((Card)c).setSelected(true);
+                }
+            }
+			
+            //this._player._cardsPanel.add(this._player._deck.draw());
+            //this._player.setVisible(false);
+            //this._player.setVisible(true);
         }
     }
 }
