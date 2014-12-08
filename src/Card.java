@@ -87,4 +87,14 @@ public class Card extends JToggleButton{ // card Object
     public int getWorth() {
         return this._denomination.getValue();
     }
+    
+    public void setReadonlyFace() {
+        this.setDisabledIcon(this.getSelectedIcon());
+        this.setEnabled(false);
+    }
+    
+    public void setReadonlyBack() {
+        this.setDisabledIcon(this.getIcon());
+        this.setEnabled(false);
+    }
 }

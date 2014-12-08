@@ -124,7 +124,7 @@ public class Player extends JPanel {
             // Flips all dealer cards face up
             for(Component c: this._dealer.getComponents()){
                 if (c instanceof Card){
-                    ((Card)c).setSelected(true);
+                    ((Card)c).setReadonlyFace();
                 }
             }
 			
