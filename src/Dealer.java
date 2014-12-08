@@ -3,12 +3,13 @@ import static java.lang.Thread.sleep;
 import javax.swing.*;
 
 public class Dealer extends JPanel {
-    private final Deck _deck;
+    private Deck _deck;
     private Player _player;
     
-    public Dealer(Deck d) {
+    public Dealer(Game g) {
         // Add Objects
-        this._deck = d;
+        this._deck = g.getDeck();
+        this._player = g.getPlayer();
         
         // Set JPanel Properties
         this.setLayout(new FlowLayout());
@@ -27,7 +28,9 @@ public class Dealer extends JPanel {
         }
     }
 	
-    public void startDealerTurn() {
+    public void startDealerTurn(Player p) {
+        this._player = p;
+        
         boolean stand = _player.busted();
         
         while (!stand){

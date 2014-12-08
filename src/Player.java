@@ -4,15 +4,15 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class Player extends JPanel {
-    private final Game _game;
-    private final Deck _deck;
+    private Game _game;
+    private Deck _deck;
     private Dealer _dealer;
-    private final JPanel _cardsPanel;
-    private final JButton _hit;
-    private final JButton _stand;
+    private JPanel _cardsPanel;
+    private JButton _hit;
+    private JButton _stand;
     
-    private final HitListener _hitListener;
-    private final StandListener _standListener;
+    private HitListener _hitListener;
+    private StandListener _standListener;
     
     public Player(Game g) {
         // Initialization
@@ -64,6 +64,8 @@ public class Player extends JPanel {
         }
     }
     
+    public void setGame(Game g) {this._game = g;}
+    
     public int getTotal() {
         int total = 0;
         for (Component c : this._cardsPanel.getComponents()) {
@@ -90,7 +92,7 @@ public class Player extends JPanel {
     
     // Action Listeners
     private class HitListener implements ActionListener {
-        private final Player _player;
+        private Player _player;
         
         public HitListener(Player p) {
             this._player = p;
@@ -112,8 +114,8 @@ public class Player extends JPanel {
     }
     
     private class StandListener implements ActionListener {
-        private final Player _player;
-        private final Dealer _dealer;
+        private Player _player;
+        private Dealer _dealer;
         
         public StandListener(Player p, Dealer d) {
             this._player = p;
@@ -132,7 +134,7 @@ public class Player extends JPanel {
             this._player.disableButtons();
 
             // Signal dealer to start their turn!
-            this._dealer.startDealerTurn();
+            this._dealer.startDealerTurn(this._player);
         }
     }
 }

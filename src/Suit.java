@@ -5,7 +5,7 @@ public enum Suit {
     Diamond("Diamond"),
     Club("Club");
     
-    private final String _id;
+    private String _id;
     
     private Suit(String id) {
         this._id = id;

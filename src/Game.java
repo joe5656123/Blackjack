@@ -2,7 +2,7 @@ import java.awt.*;
 import javax.swing.*;
 
 public class Game extends JFrame {
-    private final Deck _deck;
+    private Deck _deck;
     private Player _player;
     private Dealer _dealer;
     
@@ -18,7 +18,7 @@ public class Game extends JFrame {
         this._deck = new Deck();
         
         // Configure Dealer
-        this._dealer = new Dealer(this._deck);
+        this._dealer = new Dealer(this);
         
         // Configure Player
         this._player = new Player(this); // Adds the player panel
@@ -32,7 +32,7 @@ public class Game extends JFrame {
     
     public void restartGame() {
         // TODO: Make this actually do something:P
-        this._dealer = new Dealer(this._deck);
+        this._dealer = new Dealer(this);
         this._player = new Player(this);
     }
     

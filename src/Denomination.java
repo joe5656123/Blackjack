@@ -14,8 +14,8 @@ public enum Denomination { // Denomination enum
     Queen("Queen", 10),
     King("King", 10);
     
-    private final String _id;
-    private final int _value;
+    private String _id;
+    private int _value;
     
     private Denomination(String id, int value) {
         this._id = id;

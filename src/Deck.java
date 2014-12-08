@@ -6,7 +6,7 @@ public class Deck {
         this.generateNewDeck(); // generates the deck
     }
     
-    public final void generateNewDeck() {
+    public void generateNewDeck() {
         this._deck = new java.util.ArrayList<>(); // Fills the Deck arraylist
         for (int i = 1; i <= 52; i++) {
             this._deck.add(new Card(i));
