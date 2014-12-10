@@ -7,20 +7,21 @@ public class Game extends JFrame {
     private Player _player;
     private Dealer _dealer;
     private ExitListener _exitListener;
-    private JButton _newGame;
+    private JButton _newGameButton;
+    //private Game _newGame;
     
     public Game() {
         // Set JFrame Properties
         this.setSize(600, 600);
-        this.setTitle("Black Jack");
+        this.setTitle("Blackjack");
         this.setLocationRelativeTo(null); // Center the frame
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setExtendedState(Frame.MAXIMIZED_BOTH);
         this._exitListener = new ExitListener(this);
-        this._newGame = new JButton("New Game");
-        this._newGame.setSize(100, 100);
-        this._newGame.addActionListener(this._exitListener);
-        this.add(this._newGame, BorderLayout.CENTER);
+        this._newGameButton = new JButton("New Game");
+        this._newGameButton.setSize(100, 100);
+        this._newGameButton.addActionListener(this._exitListener);
+        this.add(this._newGameButton, BorderLayout.CENTER);
         this.setVisible(true);
         
         // Instansiate Cards
@@ -31,18 +32,24 @@ public class Game extends JFrame {
         
         // Configure Player
         this._player = new Player(this); // Adds the player panel
+
+        // Configure NEW GAME button
+        //this._newGame = new Game();
         
         // Add Components
         this.setLayout(new BorderLayout());
         this.getContentPane().setBackground(new Color(0, 150, 0)); // Green background
         this.add(this._player, BorderLayout.SOUTH); // Adds the player cards
+        //this.add(this._newGame, BorderLayout.CENTER); // Adds the NEW GAME button
         this.add(this._dealer, BorderLayout.NORTH); // Adds the dealers cards
     }
     
     public void restartGame() {
         // TODO: Make this actually do something:P
+        this.setVisible(false);
         this._dealer = new Dealer(this);
         this._player = new Player(this);
+        this.setVisible(true);
     }
     
     public Player getPlayer() {
@@ -66,13 +73,7 @@ public class Game extends JFrame {
         
         @Override
         public void actionPerformed(ActionEvent e) {
-            Blackjack bj = new Blackjack();
-            
-            bj.main(null);
-            
-            this._game.setDefaultCloseOperation(HIDE_ON_CLOSE);
-            this._game.dispatchEvent(new WindowEvent(this._game, WindowEvent.WINDOW_CLOSING));
-            this._game.setVisible(true);
+            restartGame();
         }
     }
 }

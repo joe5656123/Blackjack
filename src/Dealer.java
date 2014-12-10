@@ -18,7 +18,9 @@ public class Dealer extends JPanel {
         this.setBackground(new Color(0, 150, 0));
         
         // Add Initial Cards
-        this.add(new Card(this._deck.draw(), false, true));
+        Card c = new Card(this._deck.draw(), true, true);
+        c.setReadonlyFace();
+        this.add(c);
         this.add(new Card(this._deck.draw(), false, true));
     }
     
@@ -31,6 +33,7 @@ public class Dealer extends JPanel {
     }
 	
     public void startDealerTurn(Player p) {
+        Game g = new Game();
         this._player = p;
         
         boolean stand = _player.busted();
@@ -46,6 +49,8 @@ public class Dealer extends JPanel {
             else
                 stand = true;
         }
+        
+        //g.restartGame();
     }
     
     public int getDealerScore(){
