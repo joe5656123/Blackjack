@@ -43,12 +43,14 @@ public class Game extends JFrame {
 
     }
     
-    public void restartGame() {
-        // TODO: Make this actually do something:P
+    public void restartGame(Game g) {
         this.setVisible(false);
+        g = new Game();
         this._dealer = new Dealer(this);
         this._player = new Player(this);
         this.setVisible(true);
+        
+        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_GAINED_FOCUS));
     }
     
     public Player getPlayer() {
@@ -72,7 +74,7 @@ public class Game extends JFrame {
         
         @Override
         public void actionPerformed(ActionEvent e) {
-            restartGame();
+            restartGame(_game);
         }
     }
 }
