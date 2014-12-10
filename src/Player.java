@@ -79,6 +79,7 @@ public class Player extends JPanel {
                 total += ((Card)c).getWorth();
             }
         }
+        System.out.println(total);
         return total;
     }
     
@@ -135,7 +136,11 @@ public class Player extends JPanel {
             if (this._player.getTotal() > 21) {
                 // TODO: Ace logic here:
                 if (this._player.hasCard(Denomination.Ace) != -1) {
-                    while (this._player.getTotal() > 21 && this._player.switchToHardAce());
+                    while (this._player.getTotal() > 21) {
+                        if (!this._player.switchToHardAce()) {
+                            break;
+                        }
+                    }
                 }
             }
             if (this._player.getTotal() >= 21) {

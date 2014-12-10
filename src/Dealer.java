@@ -61,4 +61,15 @@ public class Dealer extends JPanel {
         
         return dealerTotal;
     }
+    
+    private boolean switchToHardAce() {
+        Component[] c = this.getComponents();
+        for (int i = 0; i < c.length; i++) {
+            if (c[i] instanceof Card && ((Card)c[i]).getDenomination().equals(Denomination.Ace.toString())) {
+                ((Card)c[i]).switchToHardAce();
+                return true;
+            }
+        }
+        return false;
+    }
 }
