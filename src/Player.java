@@ -10,9 +10,11 @@ public class Player extends JPanel {
     private JPanel _cardsPanel;
     private JButton _hit;
     private JButton _stand;
+    private JButton _newGameButton;
     
     private HitListener _hitListener;
     private StandListener _standListener;
+    private ExitListener _exitListener;
     
     public Player(Game g) {
         // Initialization
@@ -24,6 +26,8 @@ public class Player extends JPanel {
         this._dealer = g.getDealer();
         this._hitListener = new HitListener(this);
         this._standListener = new StandListener(this, this._dealer);
+        this._exitListener = new ExitListener(this._game);
+        this._newGameButton = new JButton("New Game");
         
         // Layout
         this.setLayout(new FlowLayout());
@@ -34,10 +38,12 @@ public class Player extends JPanel {
         this.add(_stand);
         this.add(_cardsPanel);
         this.add(_hit);
+        this.add(_newGameButton);
         
         // Add action listeners
         this._hit.addActionListener(this._hitListener);
         this._stand.addActionListener(this._standListener);
+        this._newGameButton.addActionListener(this._exitListener);
         
         // Add Initial Cards
         this.addCard(new Card(this._deck.draw(), false));
@@ -102,9 +108,11 @@ public class Player extends JPanel {
     }
 
     private boolean switchToHardAce() {
-        for (Component c : this._cardsPanel.getComponents()) {
-            if (c instanceof Card && ((Card)c).getDenomination().equals(Denomination.Ace.toString())) {
-                
+        Component[] c = this._cardsPanel.getComponents();
+        for (int i = 0; i < c.length; i++) {
+            if (c[i] instanceof Card && ((Card)c[i]).getDenomination().equals(Denomination.Ace.toString())) {
+                ((Card)c[i]).switchToHardAce();
+                return true;
             }
         }
         return false;
@@ -158,6 +166,18 @@ public class Player extends JPanel {
 
             // Signal dealer to start their turn!
             this._dealer.startDealerTurn(this._player);
+        }
+    }
+    private class ExitListener implements ActionListener {
+        private Game _game;
+        
+        public ExitListener(Game g) {
+            this._game = g;
+        }
+        
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            this._game.restartGame(this._game);
         }
     }
 }

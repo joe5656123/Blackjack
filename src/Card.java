@@ -98,4 +98,12 @@ public class Card extends JToggleButton{ // card Object
         this.setEnabled(false);
         this.setDisabledIcon(this.getIcon());
     }
+    
+    public boolean switchToHardAce() {
+        if (this._denomination == Denomination.Ace) {
+            this._denomination = Denomination.HardAce;
+            return true;
+        }
+        return false;
+    }
 }
