@@ -33,7 +33,7 @@ public class Dealer extends JPanel {
     }
 	
     public void startDealerTurn(Player p) {
-        Game g = new Game();
+        //Game g = new Game(); <- creates new window for some reason
         this._player = p;
         
         boolean stand = _player.busted();
@@ -49,8 +49,6 @@ public class Dealer extends JPanel {
             else
                 stand = true;
         }
-        
-        //g.restartGame();
     }
     
     public int getDealerScore(){
