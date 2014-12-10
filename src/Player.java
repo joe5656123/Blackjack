@@ -11,6 +11,7 @@ public class Player extends JPanel {
     private JButton _hit;
     private JButton _stand;
     private JButton _newGameButton;
+    private JLabel _score;
     
     private HitListener _hitListener;
     private StandListener _standListener;
@@ -28,6 +29,8 @@ public class Player extends JPanel {
         this._standListener = new StandListener(this, this._dealer);
         this._exitListener = new ExitListener(this._game);
         this._newGameButton = new JButton("New Game");
+        this._score = new JLabel();
+        //this._dealerScore = new JLabel(Integer.toString(this.getTotal()));
         
         // Layout
         this.setLayout(new FlowLayout());
@@ -36,6 +39,7 @@ public class Player extends JPanel {
         
         // Add Components
         this.add(_stand);
+        this.add(_score);
         this.add(_cardsPanel);
         this.add(_hit);
         this.add(_newGameButton);
@@ -48,6 +52,7 @@ public class Player extends JPanel {
         // Add Initial Cards
         this.addCard(new Card(this._deck.draw(), false));
         this.addCard(this._deck.draw());
+        this._score.setText(Integer.toString(this.getTotal()));
         
         if (this.getTotal() == 21) {
             this._standListener.actionPerformed(null);
@@ -79,6 +84,7 @@ public class Player extends JPanel {
                 total += ((Card)c).getWorth();
             }
         }
+        this._score.setText(Integer.toString(total));
         return total;
     }
     
