@@ -18,10 +18,11 @@ public class Game extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setExtendedState(Frame.MAXIMIZED_BOTH);
         this._exitListener = new ExitListener(this);
+        
         this._newGameButton = new JButton("New Game");
         this._newGameButton.setSize(100, 100);
         this._newGameButton.addActionListener(this._exitListener);
-        this.add(this._newGameButton, BorderLayout.CENTER);
+
         this.setVisible(true);
         
         // Instansiate Cards
@@ -32,16 +33,14 @@ public class Game extends JFrame {
         
         // Configure Player
         this._player = new Player(this); // Adds the player panel
-
-        // Configure NEW GAME button
-        //this._newGame = new Game();
         
         // Add Components
         this.setLayout(new BorderLayout());
         this.getContentPane().setBackground(new Color(0, 150, 0)); // Green background
         this.add(this._player, BorderLayout.SOUTH); // Adds the player cards
-        //this.add(this._newGame, BorderLayout.CENTER); // Adds the NEW GAME button
         this.add(this._dealer, BorderLayout.NORTH); // Adds the dealers cards
+        this._player.add(this._newGameButton); // Adds new game button
+
     }
     
     public void restartGame() {
