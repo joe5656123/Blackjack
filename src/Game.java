@@ -40,17 +40,15 @@ public class Game extends JFrame {
         this.add(this._player, BorderLayout.SOUTH); // Adds the player cards
         this.add(this._dealer, BorderLayout.NORTH); // Adds the dealers cards
         this._player.add(this._newGameButton); // Adds new game button
-
     }
     
     public void restartGame(Game g) {
         this.setVisible(false);
-        g = new Game();
-        this._dealer = new Dealer(this);
-        this._player = new Player(this);
+        this.remove(this._player);
+        this.remove(this._dealer);
         this.setVisible(true);
         
-        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_GAINED_FOCUS));
+        Game game = new Game();
     }
     
     public Player getPlayer() {
