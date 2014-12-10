@@ -49,6 +49,8 @@ public class Dealer extends JPanel {
             else
                 stand = true;
         }
+        
+        this._game.determineWinner();
     }
     
     public int getDealerScore(){

@@ -79,7 +79,6 @@ public class Player extends JPanel {
                 total += ((Card)c).getWorth();
             }
         }
-        System.out.println(total);
         return total;
     }
     

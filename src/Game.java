@@ -58,4 +58,28 @@ public class Game extends JFrame {
     public Deck getDeck() {
         return this._deck;
     }
+
+    public void determineWinner() {
+        StringBuilder fullMessage = new StringBuilder();
+        String message;
+        if (this._player.getTotal() > 21) {
+            message = "You busted!";
+        } else if (this._player.getTotal() == 21) {
+            message = "Blackjack! You win!";
+        } else if (this._dealer.getDealerScore() > 21) {
+            message = "The dealer busted, you win!";
+        } else if (this._dealer.getDealerScore() == 21) {
+            message = "The dealer has blackjack, you lose!";
+        } else if (this._dealer.getDealerScore() > this._player.getTotal()) {
+            message = "The dealer has more than you, you lose!";
+        } else if (this._dealer.getDealerScore() == this._player.getTotal()) {
+            message = "You tied!";
+        }else {
+            message = "You have more than the dealer, you win!";
+        }
+        fullMessage.append(message);
+        fullMessage.append("\nYour total: ").append(this._player.getTotal());
+        fullMessage.append("\nDealer's total: ").append(this._dealer.getDealerScore());
+        JOptionPane.showMessageDialog(this, fullMessage.toString());
+    }
 }
