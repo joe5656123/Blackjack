@@ -15,8 +15,8 @@ public enum Denomination { // Denomination enum
     King("King", 10),
     HardAce("Ace", 1);
     
-    private String _id;
-    private int _value;
+    private final String _id;
+    private final int _value;
     
     private Denomination(String id, int value) {
         this._id = id;

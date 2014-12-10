@@ -44,11 +44,10 @@ public class Game extends JFrame {
     
     public void restartGame(Game g) {
         this.setVisible(false);
-        this.remove(this._player);
-        this.remove(this._dealer);
-        this.setVisible(true);
-        
-        Game game = new Game();
+        g = new Game();
+        this._dealer = new Dealer(this);
+        this._player = null;
+        this._player = new Player(this);
     }
     
     public Player getPlayer() {
