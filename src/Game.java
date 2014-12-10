@@ -3,6 +3,8 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class Game extends JFrame {
+    private int numWins;
+    private int numLosses;
     private Deck _deck;
     private Player _player;
     private Dealer _dealer;
@@ -31,6 +33,11 @@ public class Game extends JFrame {
         this.getContentPane().setBackground(new Color(0, 150, 0)); // Green background
         this.add(this._player, BorderLayout.SOUTH); // Adds the player cards
         this.add(this._dealer, BorderLayout.NORTH); // Adds the dealers cards
+        
+        // TODO: Read wins / losses in from file
+        
+        this.numWins = 0;
+        this.numLosses = 0;
     }
     
     public void restartGame(Game g) {
@@ -64,22 +71,31 @@ public class Game extends JFrame {
         String message;
         if (this._player.getTotal() > 21) {
             message = "You busted!";
+            this.numLosses++;
         } else if (this._player.getTotal() == 21) {
             message = "Blackjack! You win!";
+            this.numWins++;
         } else if (this._dealer.getDealerScore() > 21) {
             message = "The dealer busted, you win!";
+            this.numWins++;
         } else if (this._dealer.getDealerScore() == 21) {
             message = "The dealer has blackjack, you lose!";
+            this.numLosses++;
         } else if (this._dealer.getDealerScore() > this._player.getTotal()) {
             message = "The dealer has more than you, you lose!";
+            this.numLosses++;
         } else if (this._dealer.getDealerScore() == this._player.getTotal()) {
             message = "You tied!";
         }else {
             message = "You have more than the dealer, you win!";
+            this.numWins++;
         }
         fullMessage.append(message);
         fullMessage.append("\nYour total: ").append(this._player.getTotal());
         fullMessage.append("\nDealer's total: ").append(this._dealer.getDealerScore());
+        fullMessage.append("\nWins: ").append(this.numWins);
+        fullMessage.append("\nLosses: ").append(this.numLosses);
+        if (this.numLosses > 0) fullMessage.append("\nWin / Loss Ratio: ").append(this.numWins / this.numLosses);
         JOptionPane.showMessageDialog(this, fullMessage.toString());
     }
 }
