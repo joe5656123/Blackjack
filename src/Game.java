@@ -46,7 +46,9 @@ public class Game extends JFrame {
     public void restartGame() {
         // TODO: Make this actually do something:P
         this.setVisible(false);
+        this._dealer = null;
         this._dealer = new Dealer(this);
+        this._player = null;
         this._player = new Player(this);
         this.setVisible(true);
     }

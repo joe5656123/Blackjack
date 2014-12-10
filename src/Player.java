@@ -90,6 +90,26 @@ public class Player extends JPanel {
         this._stand.setEnabled(true);
     }
     
+    public int hasCard(Denomination d) {
+        int count = 0;
+        for (Component c : this._cardsPanel.getComponents()) {
+            if (c instanceof Card && ((Card)c).getDenomination().equals(d.toString())) {
+                return count;
+            }
+            count++;
+        }
+        return -1;
+    }
+
+    private boolean switchToHardAce() {
+        for (Component c : this._cardsPanel.getComponents()) {
+            if (c instanceof Card && ((Card)c).getDenomination().equals(Denomination.Ace.toString())) {
+                
+            }
+        }
+        return false;
+    }
+    
     // Action Listeners
     private class HitListener implements ActionListener {
         private Player _player;
@@ -105,7 +125,10 @@ public class Player extends JPanel {
             this._player.setVisible(true);
             
             if (this._player.getTotal() > 21) {
-                // Ace logic here:
+                // TODO: Ace logic here:
+                if (this._player.hasCard(Denomination.Ace) != -1) {
+                    while (this._player.getTotal() > 21 && this._player.switchToHardAce());
+                }
             }
             if (this._player.getTotal() >= 21) {
                 this._player._standListener.actionPerformed(null);
