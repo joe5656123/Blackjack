@@ -31,7 +31,7 @@ public class Card extends JToggleButton{ // card Object
         this._denomination = Denomination.getDenomFromInt(cardNumber);
         
         // Configure Image
-        i = new ImageIcon("images/b1fv.png");
+        i = new ImageIcon(Constants.IMGDIR + "/b1fv.png");
         
         // Set JToggleButton Properties
         this.setIcon(i);
@@ -41,7 +41,7 @@ public class Card extends JToggleButton{ // card Object
         this.setContentAreaFilled(false); 
         this.setFocusPainted(false); 
         this.setOpaque(false);
-        this.setSelectedIcon(new ImageIcon("images/" + cardNumber + ".png"));
+        this.setSelectedIcon(new ImageIcon(Constants.IMGDIR + "/" + cardNumber + ".png"));
         this.setEnabled(!dealer);
         
     }
