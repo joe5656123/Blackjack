@@ -1,6 +1,9 @@
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 
@@ -29,6 +32,21 @@ public class Stat {
     
     public void losses(int l) { this._losses = l; }
     public int losses() { return this._losses; }
+    
+    public void win() { this._wins++; }
+    public void lose() { this._losses++; }
+    
+    public void writeToFile() {
+        File file = new File(Constants.STATDIR);
+        if (!file.exists()) {
+            try { file.createNewFile(); } catch (Exception ex) { return; }
+        }
+        try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(Constants.STATDIR, true)))) {
+            out.println(this._wins + " " + this._losses + " " + this._name);
+        } catch (Exception e) {
+            System.out.println("Failed to write to file!");
+        }
+    }
 }
 
 class StatCollection extends java.util.ArrayList<Stat> {

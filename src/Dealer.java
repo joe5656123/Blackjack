@@ -33,10 +33,9 @@ public class Dealer extends JPanel {
     }
 	
     public void startDealerTurn(Player p) {
-        //Game g = new Game(); <- creates new window for some reason
         this._player = p;
         
-        boolean stand = _player.busted();
+        boolean stand = _player.getTotal() >= 21;
         
         while (!stand){
             if (getDealerScore() < 17){

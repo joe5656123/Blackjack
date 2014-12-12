@@ -3,12 +3,11 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class Game extends JFrame {
-    private int numWins;
-    private int numLosses;
+    private Stat _stat;
     private Deck _deck;
     private Player _player;
     private Dealer _dealer;
-    private JButton _newGameButton;
+    private ExitListener _exitListener;
     
     public Game() {
         // Set JFrame Properties
@@ -34,10 +33,19 @@ public class Game extends JFrame {
         this.add(this._player, BorderLayout.SOUTH); // Adds the player cards
         this.add(this._dealer, BorderLayout.NORTH); // Adds the dealers cards
         
-        // TODO: Read wins / losses in from file
+        this._stat = new Stat();
+        String name = null;
+        while (name == null || name.trim().equals("")) {
+            name = JOptionPane.showInputDialog(this, "Enter your name for the leaderboards!");
+        }
         
-        this.numWins = 0;
-        this.numLosses = 0;
+        this._stat.name(name);
+        this._stat.wins(0);
+        this._stat.losses(0);
+        
+        // Add Exit Listener
+        this._exitListener = new ExitListener(this._stat);
+        this.addWindowListener(this._exitListener);
     }
     
     public void restartGame(Game g) {
@@ -71,31 +79,40 @@ public class Game extends JFrame {
         String message;
         if (this._player.getTotal() > 21) {
             message = "You busted!";
-            this.numLosses++;
+            this._stat.lose();
         } else if (this._player.getTotal() == 21) {
             message = "Blackjack! You win!";
-            this.numWins++;
+            this._stat.win();
         } else if (this._dealer.getDealerScore() > 21) {
             message = "The dealer busted, you win!";
-            this.numWins++;
+            this._stat.win();
         } else if (this._dealer.getDealerScore() == 21) {
             message = "The dealer has blackjack, you lose!";
-            this.numLosses++;
+            this._stat.lose();
         } else if (this._dealer.getDealerScore() > this._player.getTotal()) {
             message = "The dealer has more than you, you lose!";
-            this.numLosses++;
+            this._stat.lose();
         } else if (this._dealer.getDealerScore() == this._player.getTotal()) {
             message = "You tied!";
         }else {
             message = "You have more than the dealer, you win!";
-            this.numWins++;
+            this._stat.win();
         }
         fullMessage.append(message);
         fullMessage.append("\nYour total: ").append(this._player.getTotal());
         fullMessage.append("\nDealer's total: ").append(this._dealer.getDealerScore());
-        fullMessage.append("\nWins: ").append(this.numWins);
-        fullMessage.append("\nLosses: ").append(this.numLosses);
-        if (this.numLosses > 0) fullMessage.append("\nWin / Loss Ratio: ").append(this.numWins / this.numLosses);
         JOptionPane.showMessageDialog(this, fullMessage.toString());
+    }
+    
+    class ExitListener extends WindowAdapter {
+        private Stat _stat;
+        public ExitListener(Stat s) {
+            this._stat = s;
+        }
+        @Override
+        public void windowClosing(WindowEvent e) {
+            this._stat.writeToFile();
+            System.exit(0);
+        }
     }
 }

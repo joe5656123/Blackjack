@@ -54,7 +54,7 @@ public class Player extends JPanel {
         this.addCard(this._deck.draw());
         this._score.setText(Integer.toString(this.getTotal()));
         
-        if (this.getTotal() == 21) {
+        if (this.getTotal() == 21 || this._dealer.getDealerScore() == 21) {
             this._standListener.actionPerformed(null);
         }
     }
