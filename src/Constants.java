@@ -20,6 +20,7 @@ public class Constants {
      * Netbeans sees the directory as src\images, however
      * other programs which use the command line 'javac' will
      * see it as simply 'images'
+     * TODO: Fix so it works with jars too
      * @return A String path to the images folder
      */
     private static String calculateImageDirectory() {
