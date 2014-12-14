@@ -30,7 +30,6 @@ public class Player extends JPanel {
         this._exitListener = new ExitListener(this._game);
         this._newGameButton = new JButton("New Game");
         this._score = new JLabel();
-        //this._dealerScore = new JLabel(Integer.toString(this.getTotal()));
         
         // Layout
         this.setLayout(new FlowLayout());
@@ -54,6 +53,7 @@ public class Player extends JPanel {
         this.addCard(this._deck.draw());
         this._score.setText(Integer.toString(this.getTotal()));
         
+		// If either player has 21, end the player's turn
         if (this.getTotal() == 21 || this._dealer.getDealerScore() == 21) {
             this._standListener.actionPerformed(null);
         }
@@ -67,6 +67,9 @@ public class Player extends JPanel {
         this._cardsPanel.removeAll();
     }
     
+	/**
+	* Switches all cards to face up
+	*/
     public void showAllCards() {
         for(Component c: this._cardsPanel.getComponents()){
             if (c instanceof Card) {
@@ -77,6 +80,9 @@ public class Player extends JPanel {
     
     public void setGame(Game g) {this._game = g;}
     
+	/**
+	* Returns the total value of all cards
+	*/
     public int getTotal() {
         int total = 0;
         for (Component c : this._cardsPanel.getComponents()) {
@@ -92,16 +98,26 @@ public class Player extends JPanel {
         return this.getTotal() > 21;
     }
 
+	/**
+	* Disables the Hit and Stand buttons
+	*/
     public void disableButtons() {
         this._hit.setEnabled(false);
         this._stand.setEnabled(false);
     }
     
+	/**
+	* Enables the Hit and Stand buttons
+	*/
     public void enableButtons() {
         this._hit.setEnabled(true);
         this._stand.setEnabled(true);
     }
     
+	/**
+	* Checks to see if the player has the specified card in his/her hand
+	* @returns the index of first card, or -1
+	*/
     public int hasCard(Denomination d) {
         int count = 0;
         for (Component c : this._cardsPanel.getComponents()) {
@@ -113,6 +129,9 @@ public class Player extends JPanel {
         return -1;
     }
 
+	/**
+	* Main method used to differentiate between an Ace with a value of 11 or 1
+	*/
     private boolean switchToHardAce() {
         Component[] c = this._cardsPanel.getComponents();
         for (int i = 0; i < c.length; i++) {
@@ -134,12 +153,14 @@ public class Player extends JPanel {
         
         @Override
         public void actionPerformed(ActionEvent e) {
+			// Draws a card
             this._player._cardsPanel.add(this._player._deck.draw());
-            this._player.setVisible(false);
-            this._player.setVisible(true);
+			this._player.repaint();
+			this._player.revalidate();
             
+			// If the player has 'busted'
             if (this._player.getTotal() > 21) {
-                // TODO: Ace logic here:
+				// Determine if an Ace could be switched to value: 1
                 if (this._player.hasCard(Denomination.Ace) != -1) {
                     while (this._player.getTotal() > 21) {
                         if (!this._player.switchToHardAce()) {
@@ -148,6 +169,7 @@ public class Player extends JPanel {
                     }
                 }
             }
+			// If the player has blackjack or has busted, end turn
             if (this._player.getTotal() >= 21) {
                 this._player._standListener.actionPerformed(null);
             }
@@ -174,7 +196,7 @@ public class Player extends JPanel {
             // Disables hit / stand buttons
             this._player.disableButtons();
 
-            // Signal dealer to start their turn!
+            // Signals dealer to start their turn
             this._dealer.startDealerTurn(this._player);
         }
     }
@@ -187,6 +209,7 @@ public class Player extends JPanel {
         
         @Override
         public void actionPerformed(ActionEvent e) {
+			// Clears the board to begin a new game
             this._game.restartGame(this._game);
         }
     }

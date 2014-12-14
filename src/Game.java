@@ -18,14 +18,14 @@ public class Game extends JFrame {
         this.setExtendedState(Frame.MAXIMIZED_BOTH);
         this.setVisible(true);
         
-        // Instansiate Cards
+        // Instantiate Cards
         this._deck = new Deck();
         
-        // Configure Dealer
+        // Instantiate Dealer
         this._dealer = new Dealer(this);
         
-        // Configure Player
-        this._player = new Player(this); // Adds the player panel
+        // Instantiate Player
+        this._player = new Player(this);
         
         // Add Components
         this.setLayout(new BorderLayout());
@@ -74,6 +74,9 @@ public class Game extends JFrame {
         return this._deck;
     }
 
+	/**
+	* Determines winner and displays a message via JOptionPane
+	*/
     public void determineWinner() {
         StringBuilder fullMessage = new StringBuilder();
         String message;
@@ -111,6 +114,7 @@ public class Game extends JFrame {
         }
         @Override
         public void windowClosing(WindowEvent e) {
+			// Before closing, write the statistics to file
             this._stat.writeToFile();
             System.exit(0);
         }
