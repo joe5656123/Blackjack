@@ -32,7 +32,7 @@ public class Constants {
     private static String calculateFilePath() {
         java.io.File file = new java.io.File("src");
         if (file.isDirectory()) {
-            return "src/Stats.txt";
+            return "src\\Stats.txt";
         } else {
             return "Stats.txt";
         }

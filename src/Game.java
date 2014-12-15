@@ -7,7 +7,10 @@ public class Game extends JFrame {
     private Deck _deck;
     private Player _player;
     private Dealer _dealer;
+    
+    
     private ExitListener _exitListener;
+    private InputListener _inputListener;
     
     public Game() {
         // Set JFrame Properties
@@ -16,9 +19,9 @@ public class Game extends JFrame {
         this.setLocationRelativeTo(null); // Center the frame
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setExtendedState(Frame.MAXIMIZED_BOTH);
-        this.setVisible(true);
+        this.setFocusable(true);
         
-        // Instantiate Cards
+        // Instantiate Deck
         this._deck = new Deck();
         
         // Instantiate Dealer
@@ -43,9 +46,12 @@ public class Game extends JFrame {
         this._stat.wins(0);
         this._stat.losses(0);
         
-        // Add Exit Listener
+        // Add Listeners
         this._exitListener = new ExitListener(this._stat);
         this.addWindowListener(this._exitListener);
+        
+        this._inputListener = new InputListener(this);
+        this.addKeyListener(this._inputListener);
     }
     
     public void restartGame(Game g) {
@@ -74,9 +80,9 @@ public class Game extends JFrame {
         return this._deck;
     }
 
-	/**
-	* Determines winner and displays a message via JOptionPane
-	*/
+    /**
+    * Determines winner and displays a message via JOptionPane
+    */
     public void determineWinner() {
         StringBuilder fullMessage = new StringBuilder();
         String message;
@@ -114,9 +120,28 @@ public class Game extends JFrame {
         }
         @Override
         public void windowClosing(WindowEvent e) {
-			// Before closing, write the statistics to file
+            // Before closing, write the statistics to file
             this._stat.writeToFile();
             System.exit(0);
         }
+    }
+    
+    class InputListener extends KeyAdapter {
+        private Game _game;
+        
+        public InputListener (Game g) {
+            this._game = g;
+        }
+
+        @Override
+        public void keyTyped(KeyEvent e) {
+            if (e.getKeyChar() == 'l') {
+                // Display Leaderboard Here!
+                StatCollection sc = new StatCollection();
+                sc.populateFromFile();
+                Leaderboard l = new Leaderboard(sc);
+                l.setVisible(true);
+            }
+        }        
     }
 }
