@@ -1,13 +1,18 @@
 
 import java.awt.GridLayout;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.io.File;
 import java.util.Collections;
 import java.util.Comparator;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 
 public class Leaderboard extends JFrame {
     private StatCollection _statCollection;
+    private InputListener _inputListener;
     
     public Leaderboard (StatCollection sc) {
         this._statCollection = sc;
@@ -21,6 +26,7 @@ public class Leaderboard extends JFrame {
         
         this.setSize(512, 512);
         this.setLayout(new GridLayout((this._statCollection.size() > 10 ? 10 : this._statCollection.size()) + 1, 5));
+        this.setLocationRelativeTo(null);
         
         this.add(new JLabel("Place:"));
         this.add(new JLabel("Name:"));
@@ -36,5 +42,29 @@ public class Leaderboard extends JFrame {
             this.add(new JLabel("" + s.wins()));
             this.add(new JLabel("" + s.losses()));
         }
+        
+        this._inputListener = new InputListener(this);
+        this.addKeyListener(this._inputListener);
+    }
+    
+    class InputListener extends KeyAdapter {
+        private Leaderboard _leaderboard;
+        
+        public InputListener(Leaderboard l) {
+            this._leaderboard = l;
+        }
+        
+        @Override
+        public void keyTyped(KeyEvent e) {
+            if (e.getKeyChar() == 'd') {
+                // This functionality currently does not work!
+                int result = JOptionPane.showConfirmDialog(this._leaderboard, "Are you sure you want to delete the leaderboards?", "Warning", JOptionPane.YES_NO_OPTION);
+                if (result == JOptionPane.YES_OPTION) {
+                    File f = new File(Constants.STATDIR);
+                    f.deleteOnExit();
+                    JOptionPane.showMessageDialog(this._leaderboard, "The leaderboards will be deleted on program exit!");
+                }
+            }
+        }        
     }
 }
