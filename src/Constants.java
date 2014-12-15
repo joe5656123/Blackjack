@@ -1,6 +1,10 @@
+
+import java.awt.Color;
+
 public class Constants {
     public static String IMGDIR = calculateImageDirectory();
     public static String STATDIR = calculateFilePath();
+    public static Color BGCOLOR = new Color(0, 150, 0);
     
     /**
      * Calculates the image directory.

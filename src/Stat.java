@@ -48,6 +48,10 @@ public class Stat {
             System.out.println("Failed to write to file!");
         }
     }
+    
+    public float winLossRatio() {
+        return this._losses == 0 ? this._wins : (float)this._wins / (float)this._losses;
+    }
 }
 
 class StatCollection extends java.util.ArrayList<Stat> {

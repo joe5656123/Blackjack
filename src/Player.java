@@ -129,9 +129,9 @@ public class Player extends JPanel {
         return -1;
     }
 
-	/**
-	* Main method used to differentiate between an Ace with a value of 11 or 1
-	*/
+    /**
+    * Main method used to differentiate between an Ace with a value of 11 or 1
+    */
     private boolean switchToHardAce() {
         Component[] c = this._cardsPanel.getComponents();
         for (int i = 0; i < c.length; i++) {
@@ -141,6 +141,11 @@ public class Player extends JPanel {
             }
         }
         return false;
+    }
+    
+    public void setColor(Color c) {
+        this.setBackground(c);
+        this._cardsPanel.setBackground(c);
     }
     
     // Action Listeners
@@ -210,7 +215,7 @@ public class Player extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
 			// Clears the board to begin a new game
-            this._game.restartGame(this._game);
+            this._game.restartGame();
         }
     }
 }

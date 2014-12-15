@@ -32,7 +32,7 @@ public class Game extends JFrame {
         
         // Add Components
         this.setLayout(new BorderLayout());
-        this.getContentPane().setBackground(new Color(0, 150, 0)); // Green background
+        this.getContentPane().setBackground(Constants.BGCOLOR); // Green background
         this.add(this._player, BorderLayout.SOUTH); // Adds the player cards
         this.add(this._dealer, BorderLayout.NORTH); // Adds the dealers cards
         
@@ -54,7 +54,7 @@ public class Game extends JFrame {
         this.addKeyListener(this._inputListener);
     }
     
-    public void restartGame(Game g) {
+    public void restartGame() {
         this.remove(this._player);
         this.remove(this._dealer);
         
@@ -79,11 +79,18 @@ public class Game extends JFrame {
     public Deck getDeck() {
         return this._deck;
     }
+    
+    public void setColor(Color c) {
+        this.getContentPane().setBackground(c);
+        this._dealer.setBackground(c);
+        this._player.setColor(c);
+    }
 
     /**
     * Determines winner and displays a message via JOptionPane
     */
     public void determineWinner() {
+        try {
         StringBuilder fullMessage = new StringBuilder();
         String message;
         if (this._player.getTotal() > 21) {
@@ -111,6 +118,9 @@ public class Game extends JFrame {
         fullMessage.append("\nYour total: ").append(this._player.getTotal());
         fullMessage.append("\nDealer's total: ").append(this._dealer.getDealerScore());
         JOptionPane.showMessageDialog(this, fullMessage.toString());
+        } catch (NullPointerException e) {
+            this.restartGame();
+        }
     }
     
     class ExitListener extends WindowAdapter {
@@ -125,9 +135,30 @@ public class Game extends JFrame {
             System.exit(0);
         }
     }
+        
+    public class Funnable implements Runnable {
+        private Game _game;
+        
+        public Funnable(Game g) {
+            _game = g;
+        }
+        
+        @Override
+        public void run() {
+            java.util.Random r = new java.util.Random();
+            Color c;
+            while (true) {
+                c = new Color(r.nextInt(255), r.nextInt(255), r.nextInt(255));
+                this._game.setColor(c);
+                try { Thread.sleep(50); } catch (Exception ex) {}
+            }
+        }
+    }
     
     class InputListener extends KeyAdapter {
         private Game _game;
+        private boolean easterEgg;
+        private Thread _thread;
         
         public InputListener (Game g) {
             this._game = g;
@@ -141,6 +172,16 @@ public class Game extends JFrame {
                 sc.populateFromFile();
                 Leaderboard l = new Leaderboard(sc);
                 l.setVisible(true);
+            } else if (e.getKeyChar() == 'e') {
+                this.easterEgg = !this.easterEgg;
+                if (this.easterEgg) {
+                    this._thread = new Thread(new Funnable(this._game));
+                    this._thread.start();
+                } else {
+                    // Calling Thread.stop() here because I want my thread to unsafely end!
+                    this._thread.stop();
+                    this._game.setColor(Constants.BGCOLOR);
+                }
             }
         }        
     }
