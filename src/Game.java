@@ -119,7 +119,9 @@ public class Game extends JFrame {
         fullMessage.append("\nDealer's total: ").append(this._dealer.getDealerScore());
         JOptionPane.showMessageDialog(this, fullMessage.toString());
         } catch (NullPointerException e) {
-            this.restartGame();
+            //this.restartGame();
+            Blackjack.main(null);
+            this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
         }
     }
     
